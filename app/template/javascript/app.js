@@ -1,8 +1,15 @@
-import app from "./config/server.js";
+import Server from "./config/server.js";
 
 
-app.listen( app.get("PORT"), () => {
+class App extends Server {
     
-    console.log("Server on port", app.get("PORT"));
+    start () {
+        this.server.listen(this.server.get("PORT"), () => {
+            console.log("🚀 Server on port", this.server.get("PORT"));
+        });
+    }
 
-});
+}
+
+
+const app = new App().start();

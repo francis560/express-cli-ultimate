@@ -1,12 +1,14 @@
 import { Router } from "express";
-import indexController from "../controllers/index.controllers";
+import indexController from "../controllers/index.controllers.js";
 
 
 class IndexRoutes extends indexController{
 
-    router = Router();
+    router;
 
-    config () {
+    constructor () {
+        super();
+        this.router = Router();
         this.routes();
     }
 
