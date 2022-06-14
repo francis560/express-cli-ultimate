@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
 import inquirer from "inquirer";
-import path from "path";
 import shell from "shelljs";
-import fs from "fs";
 import gradient from "gradient-string"; 
 import { createSpinner } from "nanospinner";
-import { fileURLToPath } from "url";
+import createInitFiles from "./templates/javascript/createInitFiles.js";
 import welcome from "./welcome.js";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 
 welcome();
@@ -34,32 +30,19 @@ inquirer.prompt([{
     const spinner = createSpinner(gradient.rainbow("Creating...")).start();
 
     try {
-    
-        fs.mkdir(path.join(process.cwd(), `/${name}/`), (err) => {
 
-            if (err) {
-                spinner.error({text: `The name ${name} is in use.`});
-    
-                throw new Error();
-            }
-
-        });
+        createInitFiles.createFolderProject(name);
         
-        shell.cp("-R", path.join(process.cwd(), `app/template/${type}`), path.join(process.cwd(), `/${name}`));
-        
-        // if (database) {
-        //     fs.writeFile(path.join(__dirname, `../../${name}/config/ database.js`), "hola desde config" , (err) => {
-                
-        //         if (err) {
-        //             throw new Error();
-        //         }
+        shell.cd(`${name}`);
+        shell.exec("npm init --y");
+        shell.exec("npm i express morgan");
 
-        //     });
-        // }
+        createInitFiles.createAppFile();
+        createInitFiles.createConfigServerFile();
+        createInitFiles.createIndexRoutesFile();
+        createInitFiles.createIndexControllerFile();
         
         spinner.success({text: gradient.rainbow("Project created successfully.")});
-
-        
 
     } catch (err) {
 
