@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import { appFile, configServer, indexRoutes, indexController } from "./contentFiles.js";
+import { appFile, configServer, indexRoutes, indexController, nodemonFile } from "./contentFiles.js";
 
 
 class CreateInitFiles {
@@ -13,7 +13,7 @@ class CreateInitFiles {
     
                 throw new Error();
             }
-
+            
         });
     }
 
@@ -28,7 +28,16 @@ class CreateInitFiles {
     }
 
     createAppFile () {
-        fs.writeFile(path.join(process.cwd(), `/app.js`), appFile, err => {
+        fs.writeFile(path.join(process.cwd(), `/app.ts`), appFile, err => {
+            if (err) {
+                console.error(err);
+            }
+            // file written successfully
+        });
+    }
+
+    createNodemonFile () {
+        fs.writeFile(path.join(process.cwd(), `/nodemon.json`), nodemonFile, err => {
             if (err) {
                 console.error(err);
             }
@@ -45,7 +54,7 @@ class CreateInitFiles {
 
         });
 
-        fs.writeFile(path.join(process.cwd(), `/config/server.js`), configServer, err => {
+        fs.writeFile(path.join(process.cwd(), `/config/server.ts`), configServer, err => {
             if (err) {
                 console.error(err);
             }
@@ -62,7 +71,7 @@ class CreateInitFiles {
 
         });
 
-        fs.writeFile(path.join(process.cwd(), `/app/routes/index.routes.js`), indexRoutes, err => {
+        fs.writeFile(path.join(process.cwd(), `/app/routes/index.routes.ts`), indexRoutes, err => {
             if (err) {
                 console.error(err);
             }
@@ -79,7 +88,7 @@ class CreateInitFiles {
 
         });
 
-        fs.writeFile(path.join(process.cwd(), `/app/controllers/index.controller.js`), indexController, err => {
+        fs.writeFile(path.join(process.cwd(), `/app/controllers/index.controller.ts`), indexController, err => {
             if (err) {
                 console.error(err);
             }

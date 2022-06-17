@@ -13,6 +13,8 @@ const message = `
                     | $$                                               /$$  | $$                                  
                     | $$                                              |  $$$$$$/                                  
                     |__/                                               \\______/                                                                    
+
+Created by Francis Pinales: https://github.com/francis560
 `;
 
 
