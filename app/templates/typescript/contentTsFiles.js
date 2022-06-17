@@ -1,4 +1,4 @@
-export const appFile = `import Server from "./config/server.ts";
+export const appFileTs = `import Server from "./config/server";
 
 
 class App extends Server {
@@ -15,9 +15,11 @@ class App extends Server {
 const app = new App().start();
 `;
 
-export const configServer = `import express, { Application } from "express";
+export const configServerTs = `import express, { Application } from "express";
 import morgan from "morgan";
-import indexRoutes from "../app/routes/index.routes.ts";
+import dotenv from "dotenv";
+import indexRoutes from "../app/routes/index.routes";
+dotenv.config();
         
         
 class Server {
@@ -35,6 +37,8 @@ class Server {
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(morgan("dev"));
         this.server.set("PORT", process.env.PORT || 3000);
+
+        // Import database
     }
         
     private routes () {
@@ -47,8 +51,8 @@ class Server {
 export default Server;
 `;
 
-export const indexRoutes = `import { Router } from "express";
-import indexController from "../controllers/index.controller.ts";
+export const indexRoutesTs = `import { Router } from "express";
+import indexController from "../controllers/index.controller";
 
 
 class IndexRoutes extends indexController{
@@ -72,7 +76,7 @@ const indexRoutes = new IndexRoutes();
 export default indexRoutes;
 `;
 
-export const indexController = `import { Request, Response } from "express";
+export const indexControllerTs = `import { Request, Response } from "express";
 
 
 class IndexController {
