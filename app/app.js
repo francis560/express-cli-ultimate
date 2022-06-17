@@ -3,9 +3,9 @@ import inquirer from "inquirer";
 import shell from "shelljs";
 import gradient from "gradient-string"; 
 import { createSpinner } from "nanospinner";
-import createInitFilesJs from "./templates/javascript/createInitFiles.js";
-import createInitFilesTs from "./templates/typescript/createInitFiles.js";
+import { createBasicJsFiles, createFolderProject } from "./createInitFolders.js";
 import welcome from "./welcome.js";
+import "./commands.js";
 
 
 welcome();
@@ -27,42 +27,60 @@ inquirer.prompt([{
     message: "Do you want to use a database?"
 }]).then(({ name, type, database }) => {
 
-    const spinner = createSpinner(gradient.rainbow("Creating...")).start();
-
     try {
 
-        createInitFilesJs.createFolderProject(name);
-        
         shell.config.silent = true;
-        
-        if (type === "javascript") {
 
-            shell.cd(`${name}`);
-            shell.exec("npm init --y");
-            shell.exec("npm i express morgan");
+        if (database) {
+            inquirer.prompt({
+                type: "list",
+                name: "database_type",
+                message: "Select your database type",
+                choices: ["mongodb"]
+            }).then(({ database_type }) => {
+
+
+
+            });
+
+            return;
+        } 
+        
+        
+        const spinner = createSpinner(gradient.rainbow("Creating...")).start();
+        
+        createFolderProject(name);
+
+        createBasicJsFiles(name);
+        
+        // if (type === "javascript") {
+
+        //     shell.cd(`${name}`);
+        //     shell.exec("npm init --y");
+        //     shell.exec("npm i express morgan");
     
-            createInitFilesJs.createAppFolder();
-            createInitFilesJs.createAppFile();
-            createInitFilesJs.createConfigServerFile();
-            createInitFilesJs.createIndexRoutesFile();
-            createInitFilesJs.createIndexControllerFile();
+        //     createInitFilesJs.createAppFolder();
+        //     createInitFilesJs.createAppFile();
+        //     createInitFilesJs.createConfigServerFile();
+        //     createInitFilesJs.createIndexRoutesFile();
+        //     createInitFilesJs.createIndexControllerFile();
 
-        }
+        // }
 
-        if (type === "typescript") {
+        // if (type === "typescript") {
             
-            shell.cd(`${name}`);
+        //     shell.cd(`${name}`);
 
-            createInitFilesTs.createAppFolder();
-            createInitFilesTs.createAppFile();
-            createInitFilesTs.createConfigServerFile();
-            createInitFilesTs.createIndexRoutesFile();
-            createInitFilesTs.createIndexControllerFile();
-            createInitFilesTs.createNodemonFile();
+        //     createInitFilesTs.createAppFolder();
+        //     createInitFilesTs.createAppFile();
+        //     createInitFilesTs.createConfigServerFile();
+        //     createInitFilesTs.createIndexRoutesFile();
+        //     createInitFilesTs.createIndexControllerFile();
+        //     createInitFilesTs.createNodemonFile();
 
-        }
+        // }
         
-        spinner.success({text: gradient.rainbow("Project created successfully.")});
+        spinner.success({text: gradient.rainbow("Project created successfully. \n")});
 
     } catch (err) {
 

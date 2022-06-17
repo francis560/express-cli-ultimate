@@ -1,6 +1,6 @@
 {
   "name": "express-cli-ultimate",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "app/app.js",
   "preferGlobal": true,
   "bin": {
@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk-animation": "^2.0.2",
+    "commander": "^9.3.0",
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.1",
     "inquirer": "^8.2.4",
