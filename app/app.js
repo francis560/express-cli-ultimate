@@ -5,6 +5,7 @@ import gradient from "gradient-string";
 import { createSpinner } from "nanospinner";
 import { createBasicFiles, createFolderProject } from "./createInitFolders.js";
 import welcome from "./welcome.js";
+import finalMessage from "./finalProjectMessages.js";
 import "./commands.js";
 
 
@@ -31,6 +32,8 @@ inquirer.prompt([{
 
     try {
 
+        console.log("\n");
+
         shell.config.silent = true;
 
         // if (database) {
@@ -49,13 +52,15 @@ inquirer.prompt([{
         // } 
         
         
-        const spinner = createSpinner(gradient.rainbow("Creating...")).start();
+        const spinner = createSpinner(gradient.rainbow(`Creating a new Express project in ${process.cwd()} \n`)).start();
         
         createFolderProject(name);
 
         createBasicFiles(name, type);
         
-        spinner.success({text: gradient.rainbow("Project created successfully. \n")});
+        spinner.stop();
+
+        finalMessage(name, spinner);
 
     } catch (err) {
 
