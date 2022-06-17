@@ -1,13 +1,17 @@
 {
-  "name": "expressjs-cli",
-  "version": "0.0.3",
-  "main": "index.js",
+  "name": "express-cli-ultimate",
+  "version": "0.1.1",
+  "main": "app/app.js",
+  "preferGlobal": true,
+  "bin": {
+    "express-cli-ultimate": "app/app.js"
+  },
   "type": "module",
   "scripts": {
     "start": "node app/app.js"
   },
   "keywords": [],
-  "author": "Francis Pinales",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk-animation": "^2.0.2",
@@ -17,13 +21,5 @@
     "nanospinner": "^1.1.0",
     "shelljs": "^0.8.5"
   },
-  "description": "An easier way to build your project structure in express.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/francis560/express-cli-ultimate.git"
-  },
-  "bugs": {
-    "url": "https://github.com/francis560/express-cli-ultimate/issues"
-  },
-  "homepage": "https://github.com/francis560/express-cli-ultimate#readme"
+  "description": "An easier way to build your project structure in express."
 }

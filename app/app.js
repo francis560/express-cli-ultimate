@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import inquirer from "inquirer";
 import shell from "shelljs";
 import gradient from "gradient-string"; 
@@ -9,11 +8,7 @@ import welcome from "./welcome.js";
 
 
 welcome();
-// {
-//     type: "confirm",
-//     name: "database",
-//     message: "Do you want to use a database?"
-// }
+
 
 inquirer.prompt([{
     type: "input",
@@ -25,6 +20,10 @@ inquirer.prompt([{
     name: "type",
     message: "Select your type of project",
     choices: ["javascript"]
+}, {
+    type: "confirm",
+    name: "database",
+    message: "Do you want to use a database?"
 }]).then(({ name, type, database }) => {
 
     const spinner = createSpinner(gradient.rainbow("Creating...")).start();
@@ -32,6 +31,8 @@ inquirer.prompt([{
     try {
 
         createInitFiles.createFolderProject(name);
+        
+        shell.config.silent = true;
         
         shell.cd(`${name}`);
         shell.exec("npm init --y");
