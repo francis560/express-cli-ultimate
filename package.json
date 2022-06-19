@@ -4,7 +4,7 @@
   "main": "app/commands.js",
   "preferGlobal": true,
   "bin": {
-    "express-cli": "app/commands.js"
+    "ecu": "app/commands.js"
   },
   "type": "module",
   "scripts": {
