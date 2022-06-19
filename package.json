@@ -1,14 +1,14 @@
 {
   "name": "express-cli-ultimate",
   "version": "0.2.0",
-  "main": "app/app.js",
+  "main": "app/commands.js",
   "preferGlobal": true,
   "bin": {
-    "express-cli-ultimate": "app/app.js"
+    "express-cli": "app/commands.js"
   },
   "type": "module",
   "scripts": {
-    "start": "node app/app.js"
+    "start": "node app/commands.js"
   },
   "keywords": [
     "express",
