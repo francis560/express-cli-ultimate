@@ -1,9 +1,9 @@
-export const appFile = `import Server from "./config/server.js";
+export const appFileTs = `import Server from "./config/server";
 
 
 class App extends Server {
             
-    start () {
+    public start () {
         this.server.listen(this.server.get("PORT"), () => {
             console.log("🚀 Server on port", this.server.get("PORT"));
         });
@@ -15,14 +15,16 @@ class App extends Server {
 const app = new App().start();
 `;
 
-export const configServer = `import express from "express";
+export const configServerTs = `import express, { Application } from "express";
 import morgan from "morgan";
-import indexRoutes from "../routes/index.routes.js";
+import dotenv from "dotenv";
+import indexRoutes from "../app/routes/index.routes";
+dotenv.config();
         
         
 class Server {
         
-    server;
+    public server: Application;
         
     constructor () {
         this.server = express();
@@ -30,14 +32,16 @@ class Server {
         this.routes();
     }
         
-    config () {
+    private config () {
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(morgan("dev"));
         this.server.set("PORT", process.env.PORT || 3000);
+
+        // Import database
     }
         
-    routes () {
+    private routes () {
         this.server.use(indexRoutes.router);
     }
         
@@ -47,13 +51,13 @@ class Server {
 export default Server;
 `;
 
-export const indexRoutes = `import { Router } from "express";
-import indexController from "../controllers/index.controller.js";
+export const indexRoutesTs = `import { Router } from "express";
+import indexController from "../controllers/index.controller";
 
 
 class IndexRoutes extends indexController{
 
-    router;
+    public router: Router;
 
     constructor () {
         super();
@@ -61,7 +65,7 @@ class IndexRoutes extends indexController{
         this.routes();
     }
 
-    routes () {
+    private routes () {
         this.router.get("/hello-world", this.home);
     }
 
@@ -72,10 +76,12 @@ const indexRoutes = new IndexRoutes();
 export default indexRoutes;
 `;
 
-export const indexController = `
+export const indexControllerTs = `import { Request, Response } from "express";
+
+
 class IndexController {
 
-    home (req, res) {
+    public home (req: Request, res: Response) {
 
         res.send("Hello World");
 
@@ -85,6 +91,14 @@ class IndexController {
 
 
 export default IndexController;
+`;
+
+export const nodemonFile = `{
+"whatch": ["app.ts", "config", "app"],
+"ext": "ts",
+"ignore": ["app/**/*.spec.ts"],
+"exec": "ts-node app.ts"
+}
 `;
 
 
