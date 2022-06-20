@@ -2,7 +2,7 @@ import gradient from "gradient-string";
 
 
 const finalMessage = (name, spinner) => {
-    spinner.success({text: "Project created successfully."});
+    spinner.success({text: "Project created successfully.", mark: " "});
 
     spinner.success({text: "Inside your project you can run several commands: \n", mark: " "});
 

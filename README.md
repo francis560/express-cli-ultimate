@@ -1,8 +1,6 @@
-
 <p align="center">
   <br>
   <img src="./docs/screenshot.png" alt="Express Cli Ultimate" width="720px" height="px"/>
-  <br>
   <br>
   <br>
 </p>

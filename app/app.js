@@ -6,7 +6,6 @@ import { createBasicFiles, createFolderProject } from "./createInitFolders.js";
 import { createDbConnection } from "./createdb.js";
 import welcome from "./welcome.js";
 import finalMessage from "./finalProjectMessages.js";
-import "./commands.js";
 
 
 const generateProject = () => {
@@ -40,7 +39,7 @@ const generateProject = () => {
                     type: "list",
                     name: "database_type",
                     message: "Select your database type",
-                    choices: ["mongodb", "postgresql"]
+                    choices: ["mongodb", "postgresql", "mysql"]
                 }).then(({ database_type }) => {
     
                     console.log("\n");
