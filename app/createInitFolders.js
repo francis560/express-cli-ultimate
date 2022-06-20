@@ -63,21 +63,14 @@ export const createBasicFiles = (name, type) => {
     shell.touch(path.join(process.cwd(), `/${name}/.gitignore`));
     shell.touch(path.join(process.cwd(), `/${name}/package.json`));
     
-    if (type === "javascript") {
-        shell.touch(path.join(process.cwd(), `/${name}/app.js`));    
-        shell.touch(path.join(process.cwd(), `/${name}/config/server.js`));
-        shell.touch(path.join(process.cwd(), `/${name}/app/routes/index.routes.js`));    
-        shell.touch(path.join(process.cwd(), `/${name}/app/controllers/index.controller.js`));
-    }
+    shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/app.js` : `/${name}/app.ts`));    
+    shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/config/server.js` : `/${name}/config/server.ts`));
+    shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/app/routes/index.routes.js` : `/${name}/app/routes/index.routes.ts`));    
+    shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/app/controllers/index.controller.js` : `/${name}/app/controllers/index.controller.ts`));
 
     if (type === "typescript") {
-        shell.touch(path.join(process.cwd(), `/${name}/app.ts`));   
         shell.touch(path.join(process.cwd(), `/${name}/nodemon.json`)); 
-        shell.touch(path.join(process.cwd(), `/${name}/config/server.ts`));
-        shell.touch(path.join(process.cwd(), `/${name}/app/routes/index.routes.ts`));    
-        shell.touch(path.join(process.cwd(), `/${name}/app/controllers/index.controller.ts`));
     }
-
 
     contentBasicFiles(name, type);
 

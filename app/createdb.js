@@ -9,6 +9,8 @@ const contentdbFile = (database_type, type, name) => {
 
     if (database_type === "mongodb") {
 
+        shell.mkdir('-p', path.join(process.cwd(), `/${name}/app/models/`));
+
         fs.appendFile(path.join(process.cwd(), type === "javascript" ? `/${name}/config/database.js` : `/${name}/config/database.ts`), mongoConnection, (err) => {
             if (err) {
                 console.error(err)
