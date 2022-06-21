@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
 import shell from "shelljs";
-import { mongodbJs, mongodbTs, mysqlJs, mysqlTs, postgresqlJs, postgresqlTs } from "./templates/packageJson.js";
-import { mongoConnection, mysqlConnection, postgresqlConnection } from "./templates/database/dbConections.js";
+import { mongodbJs, mongodbTs, mysqlJs, mysqlTs, postgresqlJs, postgresqlTs } from "../templates/packageJson.js";
+import { mongoConnection, mysqlConnection, postgresqlConnection } from "../templates/database/dbConections.js";
 
 
 const contentdbFile = (database_type, type, name) => {

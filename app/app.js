@@ -2,10 +2,10 @@ import inquirer from "inquirer";
 import shell from "shelljs";
 import gradient from "gradient-string"; 
 import { createSpinner } from "nanospinner";
-import { createBasicFiles, createFolderProject } from "./createInitFolders.js";
-import { createDbConnection } from "./createdb.js";
-import welcome from "./welcome.js";
-import finalMessage from "./finalProjectMessages.js";
+import { createBasicFiles, createFolderProject } from "./config/createInitFolders.js";
+import { createDbConnection } from "./config/createdb.js";
+import welcome from "./config/welcome.js";
+import finalMessage from "./config/finalProjectMessages.js";
 
 
 const generateProject = () => {
