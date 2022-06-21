@@ -3,9 +3,9 @@ import fs from "fs";
 import shell from "shelljs";
 import gradient from "gradient-string"; 
 import { createSpinner } from "nanospinner";
-import { basicJsProject, basicTsProject } from "./templates/packageJson.js";
-import { appFileJs, configServerJs, indexControllerJs, indexRoutesJs } from "./templates/javascript/contentJsFiles.js";
-import { appFileTs, configServerTs, indexControllerTs, indexRoutesTs, nodemonFile } from "./templates/typescript/contentTsFiles.js";
+import { basicJsProject, basicTsProject } from "../templates/packageJson.js";
+import { appFileJs, configServerJs, indexControllerJs, indexRoutesJs } from "../templates/javascript/contentJsFiles.js";
+import { appFileTs, configServerTs, indexControllerTs, indexRoutesTs, nodemonFile } from "../templates/typescript/contentTsFiles.js";
 
 
 const contentBasicFiles = (name, type) => {
@@ -68,10 +68,8 @@ export const createBasicFiles = (name, type) => {
     shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/app/routes/index.routes.js` : `/${name}/app/routes/index.routes.ts`));    
     shell.touch(path.join(process.cwd(), type === "javascript" ? `/${name}/app/controllers/index.controller.js` : `/${name}/app/controllers/index.controller.ts`));
 
-    if (type === "typescript") {
-        shell.touch(path.join(process.cwd(), `/${name}/nodemon.json`)); 
-    }
-
+    type === "typescript" && shell.touch(path.join(process.cwd(), `/${name}/nodemon.json`)); 
+    
     contentBasicFiles(name, type);
 
 }
